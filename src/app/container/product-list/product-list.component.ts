@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ProductComponent } from './product/product.component';
+import { FilterComponent } from './filter/filter.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'product-list',
-  imports: [CommonModule],
+  imports: [CommonModule, ProductComponent, FilterComponent, FormsModule ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
@@ -535,5 +538,14 @@ export class ProductListComponent {
       slug: "michael-feburary-sk8-hi"
     }
   ];
+
+  totalProductCount = this.products.length;
+  totalProductInStock = this.products.filter(p => p.is_in_inventory).length;
+  totalProductOutOfStock = this.products.filter(p => !p.is_in_inventory).length;
+
+
+  onFilterCnaged(){
+    console.log("onfulertchang called")
+  }
 
 }
